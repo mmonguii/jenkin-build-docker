@@ -13,6 +13,7 @@ node {
        docker.image('mongi/nginx').withRun('-p 80:80') { c ->
        
        sh 'docker ps'
+       
    }    
    
 }
