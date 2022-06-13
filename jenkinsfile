@@ -7,7 +7,7 @@ node {
        '''
    } 
    stage('Run') {
-       sh '''javac Main.java
+       sh '''java Main
        '''
        
    }
