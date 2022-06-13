@@ -1,15 +1,18 @@
 node {
-   stage('Clone') {
-        git 'https://github.com/mmonguii/jenkin-build-docker.git'  
+   def app
+   
+   stage('clone') {
+       checkout scm
    }
-   stage('Build') {
-       sh '''javac Main.java
-       '''
-   } 
-   stage('Run') {
-       sh '''java Main
-       '''
+   
+   stage('Build image') {
+       app = docker.build("mongi/nginx")
+   }
+   
+   stage('Run image') {
+       docker.image('mongi/nginx').withRun('-p 80:80') { c ->
        
-   }
+       sh 'docker ps'
+   }    
    
 }
